@@ -5,7 +5,7 @@ from flask_login import LoginManager, login_required, login_user, current_user, 
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'mysecretkey'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://root:admin123@127.0.0.1:3306/flask-crud"
 
 login_manager = LoginManager()
 db.init_app(app)
@@ -72,7 +72,7 @@ def update_user(id_user):
 
   if user:
     user.password = data.get("password")
-
+    
     db.session.commit()
 
     return jsonify({"message": "User updated"})
